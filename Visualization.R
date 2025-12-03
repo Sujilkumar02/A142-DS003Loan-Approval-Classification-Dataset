@@ -1,11 +1,14 @@
 library(readr)
 data <- read_csv("loan_data.csv")
 
+# Filter data that include Age only less than 60 and Credit History less than 20
 mani_data <- subset(data,person_age<60 & cb_person_cred_hist_length<20)
 
+# Histogram of both independent variable and dependent variable
 hist(mani_data$person_age, xlab = "Age (Years)", main = "Histogram of Age")
 hist(mani_data$cb_person_cred_hist_length, xlab = "Credit History Length (Years)", main = "Histogram of Credit History Length")
 
+# Make test on both variables
 cor.test(mani_data$person_age, mani_data$cb_person_cred_hist_length, method="pearson")
 ##  Result :==
 # Pearson's product-moment correlation
@@ -19,6 +22,7 @@ cor.test(mani_data$person_age, mani_data$cb_person_cred_hist_length, method="pea
 #       cor 
 # 0.8628864 
 
+# Make graph and line
 plot(mani_data$person_age, mani_data$cb_person_cred_hist_length, xlab = "Age (Years)", ylab = "Credit History Legnth (Years)", main = "Scatterplot of Age vs Credit History Length")
 abline(lm(mani_data$person_age ~ mani_data$cb_person_cred_hist_length), col = "red")
 
